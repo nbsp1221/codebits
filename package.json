@@ -1,0 +1,9 @@
+{
+  "name": "userscripts",
+  "private": true,
+  "packageManager": "yarn@3.6.1",
+  "devDependencies": {
+    "eslint": "8.44.0",
+    "eslint-config-retn0": "1.12.0"
+  }
+}
