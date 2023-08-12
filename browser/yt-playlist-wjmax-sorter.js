@@ -81,8 +81,18 @@ class YouTubePlaylist {
 }
 
 function parseTitle(title) {
-  const singer = title.split('】 ')[1].split(' — ')[0];
-  const songTitle = title.split(' — ')[1].split(' [')[0];
+  let singer = '';
+  let songTitle = '';
+
+  if (title.includes(' — ')) {
+    singer = title.split('】 ')[1].split(' — ')[0];
+    songTitle = title.split(' — ')[1].split(' [')[0];
+  }
+  else {
+    singer = '';
+    songTitle = title.split('】 ')[1].split(' [')[0];
+  }
+
   const level = title.match(/MESSI|ANGEL|WAKGOOD|MINSU/g).join('');
 
   return {
@@ -107,6 +117,14 @@ function compareFn(aInfo, bInfo) {
 
   if (a.singer !== b.singer) {
     if (a.singerIndex === -1 && b.singerIndex === -1) {
+      if (a.singer === '') {
+        return 1;
+      }
+
+      if (b.singer === '') {
+        return -1;
+      }
+
       return a.singer.localeCompare(b.singer);
     }
 
